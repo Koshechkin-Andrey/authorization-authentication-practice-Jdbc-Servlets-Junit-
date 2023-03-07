@@ -1,0 +1,13 @@
+org\example\mappers\CreateMapperExample.class
+org\example\validation\ValidatorExample.class
+org\example\validation\ValidationResult.class
+org\example\mappers\ReadMapperExample.class
+org\example\dto\UserDto$UserDtoBuilder.class
+org\example\DateTimeFormatterExample.class
+org\example\validation\RegistrationValidator.class
+org\example\validation\ValidationError.class
+org\example\mappers\MapperExample.class
+org\example\dto\UserDto.class
+org\example\Main.class
+org\example\validation\ValidatorException.class
+org\example\service\UserService.class

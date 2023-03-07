@@ -1,0 +1,9 @@
+org\example\servlets\CreateUserServlet.class
+org\example\servlets\LocaleServlets.class
+org\example\util\GetJspPathUtil.class
+org\example\filter\AuthorizationFilter.class
+org\example\Main.class
+org\example\servlets\FindAllUsersServlets.class
+org\example\servlets\LoginServlets.class
+org\example\servlets\LogoutServlets.class
+org\example\util\Uri.class

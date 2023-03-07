@@ -1,0 +1,5 @@
+org\example\dao\UserDaoIT$createUser.class
+org\example\util\PropertiesUtilTest.class
+org\example\dao\UserDaoIT.class
+org\example\dao\UserDaoIT$login.class
+org\example\util\H2dateBaseUtil.class

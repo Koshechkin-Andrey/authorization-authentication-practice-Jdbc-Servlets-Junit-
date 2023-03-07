@@ -1,0 +1,69 @@
+
+.contentRegistrationForm{
+    border: 1px  white solid;
+    padding: 100px;
+    margin: auto;
+    position: absolute;
+    width: 300px;
+    height: 450px;
+    left: 450px;
+    top: 100px;
+    bottom: 50px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #000000;
+
+    color: black;
+}
+
+
+.registrationButtonSubmit {
+    width: 100%;
+    height: 10%;
+    background: rgb(55, 55, 55);
+    color: #ffffff;
+    font-family: 'Days One', sans-serif;
+    border: 1px rgba(24, 115, 255, 0) solid;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+button:hover {
+    background: rgba(49, 49, 49, 0.4);
+    color: #030303;
+    transition: all 500ms ease;
+}
+
+input[type=text], input[type=password], input[type=date], input [type="option"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    border: 1px #b4b4b4 solid;
+    border-radius: 10px;
+    background: #dad9d9;
+    color: black;
+    font-family: 'Days One', sans-serif;
+
+}
+
+select{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #dad9d9;
+    color: black;
+    border: 1px #b4b4b4 solid;
+    border-radius: 10px;
+    font-family: 'Days One', sans-serif;
+}
+
+.failRegistrationMessage {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    top: 10px;
+}

@@ -1,0 +1,64 @@
+.headerContent {
+    height: 6%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    color: white;
+    background: linear-gradient(45deg, rgba(0, 47, 114, 0.31), rgba(0, 0, 0, 0.46));
+}
+
+.formLocale {
+    position: absolute;
+    left: 85%;
+    top: 7px;
+}
+
+.formExit {
+    position: absolute;
+    left: 95%;
+    top: 7px;
+}
+
+.logoutButton {
+    width: 50px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.35);
+    border: rgba(33, 33, 33, 0.2);
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.45);
+    font-weight: bold;
+}
+
+.localeButton {
+    width: 50px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.35);
+    border: rgba(33, 33, 33, 0.2);
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.45);
+    font-weight: bold;
+
+
+}
+
+.loginButton {
+    width: 50px;
+    height: 30px;
+    font-weight: bold;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.35);
+
+    border: rgba(33, 33, 33, 0.2);
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.45);
+    left: 95%;
+    top: 7px;
+}
+
+.localeButton:hover, .logoutButton:hover, .loginButton:hover {
+    background: rgb(224, 224, 224);
+    color: rgba(0, 0, 0, 0.85);
+    transition: all 500ms ease;
+}

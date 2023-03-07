@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserDao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">database</a> &gt; <a href="index.source.html" class="el_package">org.example.dao</a> &gt; <span class="el_source">UserDao.java</span></div><h1>UserDao.java</h1><pre class="source lang-java linenums">package org.example.dao;
+
+import lombok.*;
+import org.example.entity.Country;
+import org.example.entity.Gender;
+import org.example.entity.UserEntity;
+import org.example.util.ConnectionManager;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static java.sql.Statement.RETURN_GENERATED_KEYS;
+import static org.example.util.Query.*;
+
+
+<span class="fc" id="L18">public class UserDao {</span>
+
+
+<span class="nc" id="L21">    @SneakyThrows</span>
+    public Optional&lt;UserEntity&gt; findUserByEmailAndPassword(String email, String password) {
+
+<span class="pc bpc" id="L24" title="1 of 2 branches missed.">        @Cleanup Connection connection = ConnectionManager.getConnection();</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_BY_EMAIL_AND_PASSWORD);</span>
+
+<span class="fc" id="L27">        preparedStatement.setObject(1, email);</span>
+<span class="fc" id="L28">        preparedStatement.setObject(2, password);</span>
+<span class="fc" id="L29">        ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="fc" id="L31">        UserEntity user = null;</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        while (resultSet.next()) {</span>
+<span class="fc" id="L33">            user = getBuild(resultSet);</span>
+        }
+<span class="fc" id="L35">        return Optional.ofNullable(user);</span>
+    }
+
+
+<span class="nc" id="L39">    @SneakyThrows</span>
+    public List&lt;UserEntity&gt; findAll() {
+
+<span class="fc" id="L42">        List&lt;UserEntity&gt; entityList = new ArrayList&lt;&gt;();</span>
+
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        @Cleanup Connection connection = ConnectionManager.getConnection();</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL);</span>
+<span class="fc" id="L46">        ResultSet resultSet = preparedStatement.executeQuery();</span>
+
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        while (resultSet.next()) {</span>
+<span class="fc" id="L49">            entityList.add(getBuild(resultSet));</span>
+        }
+
+<span class="fc" id="L52">        return entityList;</span>
+    }
+
+<span class="fc" id="L55">    @SneakyThrows</span>
+    public UserEntity createUser(UserEntity user) {
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        @Cleanup Connection connection = ConnectionManager.getConnection();</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER, RETURN_GENERATED_KEYS);</span>
+
+<span class="fc" id="L60">        preparedStatement.setObject(1, user.getUsername());</span>
+<span class="fc" id="L61">        preparedStatement.setObject(2, user.getBirthday());</span>
+<span class="fc" id="L62">        preparedStatement.setObject(3, user.getEmail());</span>
+<span class="fc" id="L63">        preparedStatement.setObject(4, user.getPassword());</span>
+<span class="fc" id="L64">        preparedStatement.setObject(5, user.getGender().name());</span>
+<span class="fc" id="L65">        preparedStatement.setObject(6, user.getCountry().name());</span>
+<span class="fc" id="L66">        int result = preparedStatement.executeUpdate();</span>
+
+<span class="fc" id="L68">        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();</span>
+<span class="fc" id="L69">        generatedKeys.next();</span>
+<span class="fc" id="L70">        user.setId(generatedKeys.getObject(&quot;id&quot;, Long.class));</span>
+<span class="fc" id="L71">        return user;</span>
+    }
+
+    private static UserEntity getBuild(ResultSet resultSet) throws SQLException {
+<span class="fc" id="L75">        return UserEntity.builder()</span>
+<span class="fc" id="L76">                .id(resultSet.getObject(&quot;id&quot;, Long.class))</span>
+<span class="fc" id="L77">                .username(resultSet.getObject(&quot;username&quot;, String.class))</span>
+<span class="fc" id="L78">                .birthday(resultSet.getObject(&quot;birthday&quot;, Date.class).toLocalDate())</span>
+<span class="fc" id="L79">                .email(resultSet.getObject(&quot;email&quot;, String.class))</span>
+<span class="fc" id="L80">                .password(resultSet.getObject(&quot;password&quot;, String.class))</span>
+<span class="fc" id="L81">                .gender(Gender.valueOf(resultSet.getObject(&quot;gender&quot;, String.class)))</span>
+<span class="fc" id="L82">                .country(Country.valueOf(resultSet.getObject(&quot;country&quot;, String.class)))</span>
+<span class="fc" id="L83">                .build();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
